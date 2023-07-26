@@ -1,5 +1,7 @@
 const modifiers = {
-  imgThumbnailActive: 'img-showcase__thumbnail--active'
+  imgThumbnailActive: 'img-showcase__thumbnail--active',
+  siteHeaderCartModalOpen: 'site-header__cart-modal--open',
+  lightboxOpen: 'lightbox--open'
 };
 
 
@@ -11,7 +13,7 @@ if (elSiteHeaderCartLink) {
   elSiteHeaderCartLink.addEventListener('click', function(evt) {
     evt.preventDefault();
 
-    elSiteHeaderCartModal.classList.toggle('site-header__cart-modal--open');
+    elSiteHeaderCartModal.classList.toggle(modifiers.siteHeaderCartModalOpen);
   });
 }
 
@@ -19,7 +21,7 @@ if (elSiteHeaderCartLink) {
 // IMAGE SHOWCASE
 const elImgShowcaseActiveImg = document.querySelector('.img-showcase__active-img');
 const elsImgThumbnail = document.querySelectorAll('.img-showcase__thumbnail');
-const elsImgThumbnailButton = document.querySelectorAll('.js-img-showcase__thumbnail-button');
+const elsImgThumbnailButton = document.querySelectorAll('.js-showcase-thumbnail-button');
 
 elsImgThumbnailButton.forEach(function (elButton) {
   elButton.addEventListener('click', function () {
@@ -34,3 +36,21 @@ elsImgThumbnailButton.forEach(function (elButton) {
   });
 
 })
+
+
+// LIGHTBOX
+const elLightbox = document.querySelector('.lightbox');
+const elLightboxToggler = document.querySelector('.js-lightbox-toggler');
+const elLightboxClose = document.querySelector('.lightbox__close');
+
+if (elLightboxToggler) {
+  elLightboxToggler.addEventListener('click', function (){
+    elLightbox.classList.add(modifiers.lightboxOpen);
+  });
+}
+
+if (elLightboxClose) {
+  elLightboxClose.addEventListener('click', function () {
+    elLightbox.classList.remove(modifiers.lightboxOpen);
+  });
+}

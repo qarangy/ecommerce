@@ -469,7 +469,21 @@ select:-webkit-autofill:focus {
 
 /* IMG SHOWCASE */
 .img-showcase__wrapper {
+    position: relative;
     margin-bottom: 32px;
+}
+
+.img-showcase__lightbox-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    cursor: zoom-in;
 }
 
 .img-showcase__active-img {
@@ -554,6 +568,109 @@ select:-webkit-autofill:focus {
     object-fit: cover;
 }
 
+
+.lightbox{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    overflow: auto;
+}
+
+.lightbox--open {
+    display: block;
+}
+
+.img-showcase--lightbox {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-showcase--lightbox .img-showcase__thumbnails {
+    max-width: 550px;
+}
+
+.img-showcase--lightbox .img-showcase__active-img {
+    width: 550px;
+    height: 550px;
+}
+
+.lightbox__iner {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    margin: 90px auto;
+}
+
+.lightbox__close {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 24px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    color: #d8d8d8;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.lightbox__close:hover {
+    color: var(--accent-color);
+}
+
+.lightbox__close-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.img-showcase__control {
+    position: absolute;
+    padding: 0;
+    border: 0;
+    color: var(--text-color-dark);
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.img-showcase__control-inner {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+.img-showcase__control:hover {
+    color: var(--accent-color);
+}
+
+.img-showcase__control-prev {
+    left: -28px;
+    top: calc(50% - 32px);
+}
+
+.img-showcase__control-next {
+    right: -28px;
+    top: calc(50% - 32px);
+}
+
+.img-showcase__control-icon {
+    display: block;
+    width: 13px;
+    height: 20px;
+    object-fit: contain;
+}
 
 
 /* RETINA */
