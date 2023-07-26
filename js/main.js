@@ -19,9 +19,10 @@ if (elSiteHeaderCartLink) {
 
 
 // IMAGE SHOWCASE
-const elImgShowcaseActiveImg = document.querySelector('.img-showcase__active-img');
-const elsImgThumbnail = document.querySelectorAll('.img-showcase__thumbnail');
-const elsImgThumbnailButton = document.querySelectorAll('.js-showcase-thumbnail-button');
+const elProductPageGallery = document.querySelector('.product-page__gallery');
+const elImgShowcaseActiveImg = elProductPageGallery.querySelector('.img-showcase__active-img');
+const elsImgThumbnail = elProductPageGallery.querySelectorAll('.img-showcase__thumbnail');
+const elsImgThumbnailButton = elProductPageGallery.querySelectorAll('.js-showcase-thumbnail-button');
 
 elsImgThumbnailButton.forEach(function (elButton) {
   elButton.addEventListener('click', function () {
@@ -73,3 +74,58 @@ elsImgLightboxThumbnailButton.forEach(function (elButton) {
   });
 
 })
+
+
+// Lightbox control
+const elLightboxControlPrev = elLightbox.querySelector('.js-lightbox-control-prev');
+const elLightboxControlNext = elLightbox.querySelector('.js-lightbox-control-next');
+
+if (elLightboxControlNext) {
+  elLightboxControlNext.addEventListener('click', function () {
+
+    // Find active element
+    const elActiveItem = elLightbox.querySelector('.img-showcase__thumbnail--active');
+
+    // Remove active li element's styles
+    elActiveItem.classList.remove(modifiers.imgThumbnailActive);
+
+    let elNextActiveItem;
+
+    if (elActiveItem.nextElementSibling === null) {
+      elNextActiveItem = elsImgLightboxThumbnail[0];
+    } else {
+      elNextActiveItem = elActiveItem.nextElementSibling;
+    }
+
+    elNextActiveItem.classList.add(modifiers.imgThumbnailActive);
+
+    // Update active image src accordingly
+    elImgLightboxActiveImg.src = elNextActiveItem.children[0].dataset.showcaseImgActive;
+    elImgLightboxActiveImg.srcset = `${elNextActiveItem.children[0].dataset.showcaseImgActive} 1x, ${elNextActiveItem.children[0].dataset.showcaseImgRetina} 2x`;
+  });
+}
+
+if (elLightboxControlPrev) {
+  elLightboxControlPrev.addEventListener('click', function () {
+
+    // Find active element
+    const elActiveItem = elLightbox.querySelector('.img-showcase__thumbnail--active');
+
+    // Remove active li element's styles
+    elActiveItem.classList.remove(modifiers.imgThumbnailActive);
+
+    let elNextActiveItem;
+
+    if (elActiveItem.previousElementSibling === null) {
+      elNextActiveItem = elsImgLightboxThumbnail[elsImgLightboxThumbnail.length - 1];
+    } else {
+      elNextActiveItem = elActiveItem.previousElementSibling;
+    }
+
+    elNextActiveItem.classList.add(modifiers.imgThumbnailActive);
+
+    // Update active image src accordingly
+    elImgLightboxActiveImg.src = elNextActiveItem.children[0].dataset.showcaseImgActive;
+    elImgLightboxActiveImg.srcset = `${elNextActiveItem.children[0].dataset.showcaseImgActive} 1x, ${elNextActiveItem.children[0].dataset.showcaseImgRetina} 2x`;
+  });
+}
